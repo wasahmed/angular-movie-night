@@ -18,11 +18,11 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   constructor(
     private movieService: MovieService,
     private navbarService: NavbarService,
-    private route: ActivatedRoute,
+    private route: ActivatedRoute, //need the parameter
   ) {}
 
   ngOnInit() {
-    this.id = +this.route.snapshot.paramMap.get('id');
+    this.id = +this.route.snapshot.paramMap.get('id'); //+ converts a string to a number || getting the id parameter from the URL
     this.movieSub$ = this.movieService
       .movieFromHttp(this.id)
       .subscribe(movie => {
@@ -32,6 +32,7 @@ export class MovieDetailComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.movieSub$.unsubscribe();
+    this.movieSub$.unsubscribe(); // cleans up any subscriptions whenever we are no longer using the relevant component
+    // isnt needed when the async pipe is used
   }
 }

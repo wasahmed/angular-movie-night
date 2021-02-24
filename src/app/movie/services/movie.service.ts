@@ -10,23 +10,23 @@ import { Movie, movies } from '../models/movie.model';
 export class MovieService {
   private ROOT_URL = 'http://localhost:3000/movies';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {} // inject
 
   getMovies() {
     return of(movies);
   }
 
   getMoviesFromHttp() {
-    return this.http.get<Movie[]>(this.ROOT_URL).pipe(this.addDelay);
+    return this.http.get<Movie[]>(this.ROOT_URL).pipe(this.addDelay); //returns a observable of movies
   }
 
   movie(id: number) {
     console.log(id);
-    return of(movies.find(movie => +movie.id === +id));
+    return of(movies.find(movie => +movie.id === +id)); //returns an observable of movies
   }
 
   movieFromHttp(id: number) {
-    return this.http.get<Movie>(`${this.ROOT_URL}/${id}`);
+    return this.http.get<Movie>(`${this.ROOT_URL}/${id}`); // returns a single movie
   }
 
   addMovie(movie: Movie) {
@@ -34,6 +34,6 @@ export class MovieService {
   }
 
   addDelay(obs: Observable<any>) {
-    return obs.pipe(delay(1000));
+    return obs.pipe(delay(10000));
   }
 }

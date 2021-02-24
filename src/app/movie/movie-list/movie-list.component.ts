@@ -45,18 +45,18 @@ import { MovieService } from './../services/movie.service';
   ],
 })
 export class MovieListComponent implements OnInit {
-  movies$: Observable<Movie[]>;
+  movies$: Observable<Movie[]>; 
   loadingMovies: Array<Number>;
 
   constructor(
-    private movieService: MovieService,
+    private movieService: MovieService, //injecting the movie service
     private navbarService: NavbarService,
-  ) {}
+  ) { }
 
   ngOnInit() {
     this.loadingMovies = new Array(10).fill(0).map((n, index) => index);
 
-    this.movies$ = this.movieService.getMoviesFromHttp();
+    this.movies$ = this.movieService.getMoviesFromHttp(); //fetch movies from server
     this.navbarService.title.next('MovieNight');
   }
 }
