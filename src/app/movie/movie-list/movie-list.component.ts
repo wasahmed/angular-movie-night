@@ -46,7 +46,7 @@ import { MovieService } from './../services/movie.service';
 })
 export class MovieListComponent implements OnInit {
   movies$: Observable<Movie[]>; 
-  loadingMovies: Array<Number>;
+  loadingMovies: Array<Number>; //animation part
 
   constructor(
     private movieService: MovieService, //injecting the movie service
